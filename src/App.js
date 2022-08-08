@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div className="App">
-      Horta Online
+    <div className="container">
+      <h1>Horta Online</h1>
     </div>
   );
 }
