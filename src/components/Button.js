@@ -1,15 +1,18 @@
-const ButtonIcon = ({src, alt}) => {
+const ButtonImage = ({children ,src, alt}) => {
     return(
-        <img src={src} alt={alt} />
+        <>
+            <img src={src} alt={alt} widht="30" height="30" />
+            {children}
+        </>
     );
 }
 
-const Button = ({children, className, icon}) => {
-    let btnClass = `btn ${className}`;
-    let btnIcon = <ButtonIcon src={icon} alt={children}/>
+const Button = ({children, className, image, alt}) => {
+    let btnClass = `btn ${(className)? className : ""}`;
+    let btnInner = (image) ? <ButtonImage src={image} alt={alt}>{children}</ButtonImage> : children 
     return(
         <button className={btnClass}>
-            {(icon) ? btnIcon : children}
+            {btnInner}
         </button>
     );
 }

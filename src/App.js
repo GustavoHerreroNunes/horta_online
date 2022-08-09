@@ -1,12 +1,17 @@
-import Button from "./components/Button";
-import TrashBin from "./assets/trash-bin.png";
+import MenuBar from "./components/MenuBar";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+import './styles/index.css';
 
 function App() {
   return (
-    <div className="container">
-      <h1>Horta Online</h1>
-      <Button className="btn-warning">Acessar</Button>
-    </div>
+    <>
+      <MenuBar />
+      <Content titlePage="Teste">
+        Hello World
+      </Content>
+      <Footer />
+    </>
   );
 }
 
