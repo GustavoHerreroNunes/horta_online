@@ -1,9 +1,8 @@
-import Logo from './Logo';
-import Button from './Button';
-import Magnifier from '../assets/magnifier.png';
-import ShoppingCart from '../assets/shopping-cart.png';
+import Logo from '../Logo';
+import Button from '../Button';
+import Magnifier from '../../assets/magnifier.png';
+import ShoppingCart from '../../assets/shopping-cart.png';
 import { popper } from '@popperjs/core';
-import '../bootstrap-dist/js/bootstrap';
 
 const MenuBar = () => (
         <nav className="navbar navbar-light bg-light">

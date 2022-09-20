@@ -1,4 +1,4 @@
-import logo from '../assets/strawberry-128.png';
+import logo from '../../assets/strawberry-128.png';
 
 const Logo = ({className}) => {
     return(
