@@ -7,11 +7,11 @@ const ButtonImage = ({children ,src, alt}) => {
     );
 }
 
-const Button = ({children, className, image, alt}) => {
+const Button = ({children, className, image, alt, onClick}) => {
     let btnClass = `btn ${(className)? className : ""}`;
     let btnInner = (image) ? <ButtonImage src={image} alt={alt}>{children}</ButtonImage> : children 
     return(
-        <button className={btnClass}>
+        <button className={btnClass} onClick={onClick}>
             {btnInner}
         </button>
     );

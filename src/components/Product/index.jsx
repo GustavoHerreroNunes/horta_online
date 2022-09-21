@@ -1,12 +1,13 @@
 import React from 'react';
 import Button from '../Button'
 import Strawberry from '../../assets/products/strawberry.jpg';
+import productsAddedListController from '../../controllers/productsAddedListController';
 
 const SelectQuantity = ({change, quantity}) => (
         <div>
-            <Button className="btn" onClick={change}>-</Button>
-            <input type="number" name="productQuantity" value={quantity} />
-            <Button className="btn" onClick={change}>+</Button>
+            <Button className="btn" onClick={() => { change("DECREMENT") }}>-</Button>
+            <input type="number" name="productQuantity" value={quantity} onChange={(event) =>{ change("REDECLARE", event.target) }} />
+            <Button className="btn" onClick={() => { change("INCREMENT") }}>+</Button>
         </div>
 );
 
@@ -14,8 +15,60 @@ const SelectQuantity = ({change, quantity}) => (
 class Product extends React.Component{
     constructor(props){
         super(props);
-        this.state = {added: false, quantity: 0}
+        this.state = {added: false, quantity: 0};
+
+        this.addProduct = this.addProduct.bind(this);
+        this.changeQuantity = this.changeQuantity.bind(this);
     }
+
+    addProduct(){
+        productsAddedListController.addProduct(this.props.id, this.props.price);
+        this.setState({added: true});
+    }
+
+    changeQuantity(operation, inputElement){
+        console.log("Changing product quantity");
+        
+        if(operation){
+            this.setState((state, props) => {
+                let newQuantity = state.quantity;
+    
+                switch(operation){
+                    case "INCREMENT":
+                        newQuantity++;
+                        break;
+        
+                    case "DECREMENT":
+                        newQuantity--;
+                        break;
+    
+                    case "REDECLARE":
+                        if(inputElement){
+                            newQuantity = parseInt(inputElement.value);
+                        }else{
+                            console.log("Error: Uninformed newValue");
+                        }
+                        break; 
+        
+                    default: 
+                        console.log("Error: Operation is invalid to change Product Quantity");
+                        break;
+                }
+                
+                return {quantity: newQuantity}
+            });
+
+        }else{
+            console.log("Error: Uninformed operation");
+        }
+
+    }
+
+    componentDidUpdate(){
+        console.log(`Products Added Id's: ${productsAddedListController.list}`);
+        console.log(`Quantity: ${this.state.quantity}`);
+    }
+
     render(){
         
         return(
@@ -30,8 +83,8 @@ class Product extends React.Component{
                     </div>
                     <div className="col-4 col-md-12 d-flex flex-column  justify-content-around">
                         {this.state.added 
-                            ? <SelectQuantity/> 
-                            : <Button className='btn-success mb-1 btnNutricional'>Adicionar</Button>
+                            ? <SelectQuantity change={this.changeQuantity} quantity={this.state.quantity} /> 
+                            : <Button className='btn-success mb-1 btnNutricional' onClick={this.addProduct}>Adicionar</Button>
                         }
                         
                         <Button className='btn-info btnNutricional'>Nutrição</Button>
