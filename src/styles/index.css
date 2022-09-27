@@ -12,3 +12,23 @@ a {
 footer a{
     color: var(--primary-light);
 }
+
+.btn-primaryColor{
+    border: 2px solid var(--primary-dark);
+    background-color: var(--primary-dark);
+    color: white;
+}
+.btn-primaryColor:hover{
+    background-color: white;
+    color: var(--primary-dark);
+}
+
+.btn-secondaryColor{
+    border: 2px solid var(--secondary-dark);
+    background-color: white;
+    color: var(--secondary-dark);
+}
+.btn-secondaryColor:hover{
+    background-color: var(--secondary-dark);
+    color: white;
+}
