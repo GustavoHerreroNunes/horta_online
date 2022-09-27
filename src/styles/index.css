@@ -1,3 +1,14 @@
+:root{
+    --primary-dark: #B33939;
+    --primary-light: #FF6B6B;
+    --secondary-dark: #11854C;
+    --secondary-light: #37DB6E;
+    --tertiary: #FF7E8B;
+}
+
 a {
-    color: #ff6c6c
+    color: var(--primary-dark);
+}
+footer a{
+    color: var(--primary-light);
 }
