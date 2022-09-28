@@ -32,3 +32,7 @@ footer a{
     background-color: var(--secondary-dark);
     color: white;
 }
+
+.border-primaryColor{
+    border-color: var(--primary-dark) !important;
+}

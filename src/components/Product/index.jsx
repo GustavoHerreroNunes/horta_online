@@ -72,8 +72,8 @@ class Product extends React.Component{
     render(){
         
         return(
-            <div className='col-12 col-md-4 col-lg-3 mb-1 border'>
-                <div className="row">
+            <div className='col-12 col-md-4 col-lg-3 border-top border-primaryColor'>
+                <div className="row my-3">
                     <div className="col-4 col-md-12">
                         <img src={Strawberry} placeholder={`Imagem do produto '${this.props.name}'`} width='100%'/>
                     </div>
@@ -81,13 +81,13 @@ class Product extends React.Component{
                         <h6>{this.props.name}</h6>
                         {`R$ ${this.props.price}/${this.props.unit}`}
                     </div>
-                    <div className="col-4 col-md-12 d-flex flex-column  justify-content-around">
+                    <div className="col-4 col-md-12 d-flex flex-column justify-content-around">
                         {this.state.added 
                             ? <SelectQuantity change={this.changeQuantity} quantity={this.state.quantity} /> 
-                            : <Button className='btn-success mb-1 btnNutricional' onClick={this.addProduct}>Adicionar</Button>
+                            : <Button className='btn mb-1 btn-primaryColor' onClick={this.addProduct}>Adicionar</Button>
                         }
                         
-                        <Button className='btn-info btnNutricional'>Nutrição</Button>
+                        <Button className='btn btn-secondaryColor'>Nutrição</Button>
                     </div>
                 </div>
             </div>
