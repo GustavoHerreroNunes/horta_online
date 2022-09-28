@@ -13,6 +13,19 @@ footer a{
     color: var(--primary-light);
 }
 
+.border-primaryColor{
+    border-color: var(--primary-dark) !important;
+}
+
+.bg-primaryColor{
+    background-color: var(--primary-dark);
+    color: white;
+}
+.bg-secondaryColor{
+    background-color: var(--secondary-dark);
+    color: white;
+}
+
 .btn-primaryColor{
     border: 2px solid var(--primary-dark);
     background-color: var(--primary-dark);
@@ -33,6 +46,3 @@ footer a{
     color: white;
 }
 
-.border-primaryColor{
-    border-color: var(--primary-dark) !important;
-}
