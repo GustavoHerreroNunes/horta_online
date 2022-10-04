@@ -4,7 +4,7 @@ const Logo = ({className}) => {
     return(
         <a href="#" className={className}>
             <img src={logo} alt="Logotipo do 'Horta Online'. Ícone de um Morango" width="45" height="45" />
-            Horta Online
+            <span className="d-md-inline d-none">Horta Online</span>
         </a>
     );
 }
