@@ -4,10 +4,11 @@ import Strawberry from '../../assets/products/strawberry.jpg';
 import productsAddedListController from '../../controllers/productsAddedListController';
 
 const SelectQuantity = ({change, quantity}) => (
-        <div>
-            <Button className="btn" onClick={() => { change("DECREMENT") }}>-</Button>
-            <input type="number" name="productQuantity" value={quantity} onChange={(event) =>{ change("REDECLARE", event.target) }} />
-            <Button className="btn" onClick={() => { change("INCREMENT") }}>+</Button>
+        <div className="input-group mb-1">
+                <Button className="btn-primaryColor" onClick={() => { change("DECREMENT") }}>-</Button>
+                <input className='form-control' type="number" name="productQuantity" value={quantity} onChange={(event) =>{ change("REDECLARE", event.target) }} />
+                <Button className="btn-primaryColor" onClick={() => { change("INCREMENT") }}>+</Button>
+           
         </div>
 );
 
@@ -84,10 +85,10 @@ class Product extends React.Component{
                     <div className="col-4 col-md-12 d-flex flex-column justify-content-around">
                         {this.state.added 
                             ? <SelectQuantity change={this.changeQuantity} quantity={this.state.quantity} /> 
-                            : <Button className='btn mb-1 btn-primaryColor' onClick={this.addProduct}>Adicionar</Button>
+                            : <Button className='mb-1 btn-primaryColor' onClick={this.addProduct}>Adicionar</Button>
                         }
                         
-                        <Button className='btn btn-secondaryColor'>Nutrição</Button>
+                        <Button className='btn-secondaryColor'>Nutrição</Button>
                     </div>
                 </div>
             </div>
