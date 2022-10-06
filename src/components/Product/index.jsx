@@ -8,8 +8,13 @@ const SelectQuantity = ({change, quantity}) => (
                 <Button className="btn-primaryColor" onClick={() => { change("DECREMENT") }}>-</Button>
                 <input className='form-control' type="number" name="productQuantity" value={quantity} onChange={(event) =>{ change("REDECLARE", event.target) }} />
                 <Button className="btn-primaryColor" onClick={() => { change("INCREMENT") }}>+</Button>
-           
         </div>
+);
+
+const BtnRemoveProduct = ({remove}) => (
+    <div className="row flex-row-reverse">
+        <Button className="col-2 text-danger fs-5" onClick={remove} >X</Button>
+    </div>
 );
 
 
@@ -19,12 +24,18 @@ class Product extends React.Component{
         this.state = {added: false, quantity: 0};
 
         this.addProduct = this.addProduct.bind(this);
+        this.removeProduct = this.removeProduct.bind(this);
         this.changeQuantity = this.changeQuantity.bind(this);
     }
 
     addProduct(){
         productsAddedListController.addProduct(this.props.id, this.props.price);
         this.setState({added: true});
+    }
+
+    removeProduct(){
+        productsAddedListController.removeProduct(this.props.id, this.props.price);
+        this.setState({added: false});
     }
 
     changeQuantity(operation, inputElement){
@@ -74,6 +85,7 @@ class Product extends React.Component{
         
         return(
             <div className='col-12 col-md-4 col-lg-3 border-top border-primaryColor'>
+                {this.state.added && <BtnRemoveProduct remove={this.removeProduct} />}
                 <div className="row my-3">
                     <div className="col-4 col-md-12">
                         <img src={Strawberry} placeholder={`Imagem do produto '${this.props.name}'`} width='100%'/>
