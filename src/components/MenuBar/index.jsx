@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Logo from '../Logo';
 import Button from '../Button';
 import Magnifier from '../../assets/magnifier.png';
@@ -18,11 +19,15 @@ const MenuBar = () => (
                 </div>
 
                 <div className="col-3 d-md-inline d-none text-center">
-                    <Button className="btn-secondaryColor border-0 w-100" image={ShoppingCart} alt="Acessar carrinho de compras">R$:0,00</Button>
+                    <Link to="your-shopping-cart">
+                        <Button className="btn-secondaryColor border-0 w-100" image={ShoppingCart} alt="Acessar carrinho de compras">R$:0,00</Button>
+                    </Link>
                 </div>
 
                 <div className="col-4 d-md-none d-inline position-fixed bottom-0 end-0 mb-2 text-end">
-                    <Button className="btn-secondaryColor btn-ShoppingCart rounded-circle" image={ShoppingCart} alt="Acessar carrinho de compras">R$:0,00</Button>
+                    <Link to="your-shopping-cart">
+                        <Button className="btn-secondaryColor btn-ShoppingCart rounded-circle" image={ShoppingCart} alt="Acessar carrinho de compras">R$:0,00</Button>
+                    </Link>
                 </div>
             </div>
         </nav>
