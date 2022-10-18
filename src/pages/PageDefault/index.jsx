@@ -1,14 +1,22 @@
 import { Component } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import MenuBar from "../../components/MenuBar";
 import Content from "../../components/Content";
 import Footer from "../../components/Footer";
 
 const PageDefault = ({ children }) => {
+    const currentLocation = useLocation();
+    const currentPageStartIndex = currentLocation.pathname.search("/")+1;
+    const currentPageURL = currentLocation.pathname.substring(currentPageStartIndex);
+    const pageName = !currentPageURL.length ? "Produtos" : 
+                    currentPageURL.startsWith("your-shopping-cart") ? "Seu Carrinho" : 
+                    "Página não encontrada :("
+                    ;
+
     return(
         <>
             <MenuBar />
-            <Content titlePage="Teste">
+            <Content titlePage={pageName}>
                 <Outlet />
                 {children}
             </Content>
