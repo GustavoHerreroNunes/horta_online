@@ -1,6 +1,7 @@
 import { createBrowserRouter, Route } from 'react-router-dom';
 import PageDefault from './pages/PageDefault';
 import Home from './pages/Home';
+import YourShoppingCart from './pages/YourShoppingCart'
 
 const ErrorPage = () => (
     <PageDefault>
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
                 index: true,
                 element: <Home />
             },
+            {
+                path: "your-shopping-cart",
+                element: <YourShoppingCart />
+            }
         ],
     }
 ]);
