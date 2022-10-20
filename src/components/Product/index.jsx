@@ -3,6 +3,8 @@ import Button from '../Button'
 import Strawberry from '../../assets/products/strawberry.jpg';
 import productsAddedListController from '../../controllers/productsAddedListController';
 
+const PAGE = {HOME: "HOME", YOUR_SHOPPING_CART: "YOUR_SHOPPING_CART"};
+
 const SelectQuantity = ({change, quantity}) => (
         <div className="input-group mb-1">
                 <Button className="btn-primaryColor" onClick={() => { change("DECREMENT") }}>-</Button>
@@ -13,19 +15,40 @@ const SelectQuantity = ({change, quantity}) => (
 
 const BtnRemoveProduct = ({remove}) => (
     <div className="row flex-row-reverse">
-        <Button className="col-2 text-danger fs-5" onClick={remove} >X</Button>
+        <Button className="col-2 text-danger fs-5 text-end" onClick={remove} >X</Button>
     </div>
 );
 
+const TxbSeparationInstruction = ({change, value}) => (
+    <input 
+        className="form-control" 
+        type="text" 
+        name="txbSeparationInstruction" 
+        value={value} 
+        placeholder="Instruções de Separação" 
+        onChange={(event) => { change(event.target) } }>
+    </input>
+);
 
 class Product extends React.Component{
     constructor(props){
         super(props);
-        this.state = {added: false, quantity: 0};
+        this.state = {added: false, quantity: 0, separationInstruction: ""};
 
         this.addProduct = this.addProduct.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
         this.changeQuantity = this.changeQuantity.bind(this);
+        this.changeSeparationInstruction = this.changeSeparationInstruction.bind(this);
+
+        this.intializeClassNames();
+    }
+
+    intializeClassNames(){
+        this.classNames = {
+            productDiv: `col-12 col-md-${(this.props.location == PAGE.HOME) ? "4 col-lg-3" : "9"} py-3 border-top border-primaryColor`,
+            productColumns: `col-4 ${(this.props.location == PAGE.HOME) && "col-md-12"}`,
+            productButtonGroup: `col-4 ${(this.props.location == PAGE.HOME) && "col-md-12"} d-flex flex-column justify-content-evenly`
+        }
     }
 
     addProduct(){
@@ -76,25 +99,36 @@ class Product extends React.Component{
 
     }
 
+    changeSeparationInstruction(inputElement){
+        const newInstructions = inputElement.value;
+        this.setState({ separationInstruction: newInstructions });
+    }
+
     componentDidUpdate(){
         console.log(`Products Added Id's: ${productsAddedListController.list}`);
         console.log(`Quantity: ${this.state.quantity}`);
+        console.log(`Separation Instruction: ${this.state.separationInstruction}`);
     }
 
     render(){
-        
         return(
-            <div className='col-12 col-md-4 col-lg-3 border-top border-primaryColor'>
+            <div className={this.classNames.productDiv}>
                 {this.state.added && <BtnRemoveProduct remove={this.removeProduct} />}
-                <div className="row my-3">
-                    <div className="col-4 col-md-12">
+                <div className="row">
+                    <div className={this.classNames.productColumns}>
                         <img src={Strawberry} placeholder={`Imagem do produto '${this.props.name}'`} width='100%'/>
                     </div>
-                    <div className="col-4 col-md-12">
+                    <div className={this.classNames.productColumns}>
                         <h6>{this.props.name}</h6>
-                        {`R$ ${this.props.price}/${this.props.unit}`}
+                        <p>{`R$ ${this.props.price}/${this.props.unit}`}</p>
+                        {this.state.added && 
+                            <>
+                                <h6>Total</h6>
+                                <p>{`R$ ${this.props.price*2}`}</p>
+                            </>
+                        }
                     </div>
-                    <div className="col-4 col-md-12 d-flex flex-column justify-content-around">
+                    <div className={this.classNames.productButtonGroup}>
                         {this.state.added 
                             ? <SelectQuantity change={this.changeQuantity} quantity={this.state.quantity} /> 
                             : <Button className='mb-1 btn-primaryColor' onClick={this.addProduct}>Adicionar</Button>
@@ -103,6 +137,13 @@ class Product extends React.Component{
                         <Button className='btn-secondaryColor'>Nutrição</Button>
                     </div>
                 </div>
+                {this.props.location == PAGE.YOUR_SHOPPING_CART &&
+                    <div className="row mt-2">
+                        <div className="col-12">
+                            <TxbSeparationInstruction change={this.changeSeparationInstruction} value={this.state.separationInstruction} />
+                        </div>
+                    </div>    
+                }
             </div>
         );
     }
