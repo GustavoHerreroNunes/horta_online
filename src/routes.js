@@ -1,21 +1,14 @@
 import { createBrowserRouter, Route } from 'react-router-dom';
 import PageDefault from './pages/PageDefault';
+import Error from './pages/Error';
 import Home from './pages/Home';
 import YourShoppingCart from './pages/YourShoppingCart'
-
-const ErrorPage = () => (
-    <PageDefault>
-        <div className="container px-auto">
-            <h2>An Error Occurred</h2>
-        </div>
-    </PageDefault>
-);
 
 const routes = createBrowserRouter([
     {
         path: "/",
         element: <PageDefault />,
-        errorElement: <ErrorPage />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,

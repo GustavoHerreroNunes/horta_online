@@ -10,7 +10,7 @@ const PageDefault = ({ children }) => {
     const currentPageURL = currentLocation.pathname.substring(currentPageStartIndex);
     const pageName = !currentPageURL.length ? "Produtos" : 
                     currentPageURL.startsWith("your-shopping-cart") ? "Seu Carrinho" : 
-                    "Página não encontrada :("
+                    "404 - Página não encontrada"
                     ;
 
     return(
