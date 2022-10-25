@@ -50,3 +50,8 @@ footer a{
     height: 5rem;
     width: 5rem;
 }
+
+#frmShoppingSummary{
+    min-height: 17rem;
+    max-height: 20rem;
+}
