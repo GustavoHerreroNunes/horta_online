@@ -45,7 +45,7 @@ class Product extends React.Component{
 
     intializeClassNames(){
         this.classNames = {
-            productDiv: `col-12 col-md-${(this.props.location == PAGE.HOME) ? "4 col-lg-3" : "9"} py-3 border-top border-primaryColor`,
+            productDiv: `col-12 col-md-${(this.props.location == PAGE.HOME) ? "4 col-lg-3" : "12"} py-3 border-top border-primaryColor`,
             productColumns: `col-4 ${(this.props.location == PAGE.HOME) && "col-md-12"}`,
             productButtonGroup: `col-4 ${(this.props.location == PAGE.HOME) && "col-md-12"} d-flex flex-column justify-content-evenly`
         }
